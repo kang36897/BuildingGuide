@@ -27,7 +27,7 @@ public class CompanyDao extends AbstractDao<Company, Long> {
         public final static Property Id = new Property(0, long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property EnglishName = new Property(2, String.class, "englishName", false, "ENGLISH_NAME");
-        public final static Property RoomNumber = new Property(3, int.class, "roomNumber", false, "ROOM_NUMBER");
+        public final static Property RoomNumber = new Property(3, String.class, "roomNumber", false, "ROOM_NUMBER");
         public final static Property Floor = new Property(4, int.class, "floor", false, "FLOOR");
     }
 
@@ -50,7 +50,7 @@ public class CompanyDao extends AbstractDao<Company, Long> {
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ," + // 0: id
                 "\"NAME\" TEXT," + // 1: name
                 "\"ENGLISH_NAME\" TEXT," + // 2: englishName
-                "\"ROOM_NUMBER\" INTEGER NOT NULL ," + // 3: roomNumber
+                "\"ROOM_NUMBER\" TEXT," + // 3: roomNumber
                 "\"FLOOR\" INTEGER NOT NULL );"); // 4: floor
     }
 
@@ -74,7 +74,11 @@ public class CompanyDao extends AbstractDao<Company, Long> {
         if (englishName != null) {
             stmt.bindString(3, englishName);
         }
-        stmt.bindLong(4, entity.getRoomNumber());
+ 
+        String roomNumber = entity.getRoomNumber();
+        if (roomNumber != null) {
+            stmt.bindString(4, roomNumber);
+        }
         stmt.bindLong(5, entity.getFloor());
     }
 
@@ -92,7 +96,11 @@ public class CompanyDao extends AbstractDao<Company, Long> {
         if (englishName != null) {
             stmt.bindString(3, englishName);
         }
-        stmt.bindLong(4, entity.getRoomNumber());
+ 
+        String roomNumber = entity.getRoomNumber();
+        if (roomNumber != null) {
+            stmt.bindString(4, roomNumber);
+        }
         stmt.bindLong(5, entity.getFloor());
     }
 
@@ -113,7 +121,7 @@ public class CompanyDao extends AbstractDao<Company, Long> {
             cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // englishName
-            cursor.getInt(offset + 3), // roomNumber
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // roomNumber
             cursor.getInt(offset + 4) // floor
         );
         return entity;
@@ -124,7 +132,7 @@ public class CompanyDao extends AbstractDao<Company, Long> {
         entity.setId(cursor.getLong(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setEnglishName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setRoomNumber(cursor.getInt(offset + 3));
+        entity.setRoomNumber(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setFloor(cursor.getInt(offset + 4));
      }
     

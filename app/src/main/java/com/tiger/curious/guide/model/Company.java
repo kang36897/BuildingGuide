@@ -25,7 +25,7 @@ public class Company {
 
     private String englishName;
 
-    private int roomNumber;
+    private String roomNumber;
 
     private int floor;
 
@@ -41,8 +41,8 @@ public class Company {
     @Generated(hash = 458770942)
     private transient CompanyDao myDao;
 
-    @Generated(hash = 169760015)
-    public Company(long id, String name, String englishName, int roomNumber,
+    @Generated(hash = 787755664)
+    public Company(long id, String name, String englishName, String roomNumber,
                    int floor) {
         this.id = id;
         this.name = name;
@@ -79,11 +79,11 @@ public class Company {
         this.englishName = englishName;
     }
 
-    public int getRoomNumber() {
+    public String getRoomNumber() {
         return this.roomNumber;
     }
 
-    public void setRoomNumber(int roomNumber) {
+    public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
 
