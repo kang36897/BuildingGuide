@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.tiger.curious.guide.vmodel.KeyModel"/>
+    </data>
+
+    <TextView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_key"
+        android:gravity="center"
+        android:onClick="@{()->model.onClick()}"
+        android:text="@{model.key.value}"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="0"/>
+</layout>

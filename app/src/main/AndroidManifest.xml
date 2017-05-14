@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 
-    package="com.tiger.curious.guide">
+          package="com.tiger.curious.guide">
 
     <application
         android:allowBackup="true"
