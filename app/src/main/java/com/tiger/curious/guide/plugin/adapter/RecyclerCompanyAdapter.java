@@ -75,6 +75,7 @@ public class RecyclerCompanyAdapter extends RecyclerView.Adapter<RecyclerCompany
 
         public void populate(Company value) {
             mModel.setCompany(value);
+            mBinding.executePendingBindings();
         }
     }
 }

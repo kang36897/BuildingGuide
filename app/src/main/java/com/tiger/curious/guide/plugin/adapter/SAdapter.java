@@ -70,7 +70,7 @@ public class SAdapter extends GenericAdapter<Key> {
 
         public void populate(Key data) {
             mModel.setKey(data);
-
+            mBinding.executePendingBindings();
         }
     }
 }
