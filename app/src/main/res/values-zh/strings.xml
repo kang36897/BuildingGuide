@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="area_company_input">按公司名称拼音首字母搜索</string>
+    <string name="area_floor_input">按楼层数搜索</string>
+    <string name="search_action">搜索</string>
+    <string name="title_search_result">搜索结果</string>
+    <string name="building_name">华电大厦</string>
+</resources>

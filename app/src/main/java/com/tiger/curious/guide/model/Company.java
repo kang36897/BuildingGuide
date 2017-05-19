@@ -1,5 +1,9 @@
 package com.tiger.curious.guide.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
 import com.tiger.curious.guide.database.CompanyDao;
 import com.tiger.curious.guide.database.DaoSession;
 
@@ -16,10 +20,10 @@ import org.greenrobot.greendao.annotation.Id;
         active = true,
         generateGettersSetters = true
 )
-public class Company {
+public class Company implements Parcelable {
 
     @Id(autoincrement = true)
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -28,6 +32,8 @@ public class Company {
     private String roomNumber;
 
     private int floor;
+
+    private String abbreviation;
 
     /**
      * Used to resolve relations
@@ -41,27 +47,58 @@ public class Company {
     @Generated(hash = 458770942)
     private transient CompanyDao myDao;
 
-    @Generated(hash = 787755664)
-    public Company(long id, String name, String englishName, String roomNumber,
-                   int floor) {
+    @Generated(hash = 1971629023)
+    public Company(Long id, String name, String englishName, String roomNumber, int floor,
+            String abbreviation) {
         this.id = id;
         this.name = name;
         this.englishName = englishName;
         this.roomNumber = roomNumber;
         this.floor = floor;
+        this.abbreviation = abbreviation;
     }
 
     @Generated(hash = 1096856789)
     public Company() {
     }
 
-    public long getId() {
-        return this.id;
+    protected Company(Parcel in) {
+        id = in.readLong();
+        name = in.readString();
+        englishName = in.readString();
+        roomNumber = in.readString();
+        floor = in.readInt();
+        abbreviation = in.readString();
     }
 
-    public void setId(long id) {
-        this.id = id;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(name);
+        dest.writeString(englishName);
+        dest.writeString(roomNumber);
+        dest.writeInt(floor);
+        dest.writeString(abbreviation);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Company> CREATOR = new Creator<Company>() {
+        @Override
+        public Company createFromParcel(Parcel in) {
+            return new Company(in);
+        }
+
+        @Override
+        public Company[] newArray(int size) {
+            return new Company[size];
+        }
+    };
+
+   
 
     public String getName() {
         return this.name;
@@ -138,6 +175,22 @@ public class Company {
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getCompanyDao() : null;
+    }
+
+    public String getAbbreviation() {
+        return this.abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 
 }

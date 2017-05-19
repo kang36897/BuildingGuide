@@ -21,7 +21,13 @@ public class GenericAdapter<T> extends BaseAdapter {
 
 
     public GenericAdapter(List<T> data) {
-        mData = data;
+        if (data == null) {
+
+            mData = Collections.EMPTY_LIST;
+        } else {
+
+            mData = data;
+        }
     }
 
 

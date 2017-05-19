@@ -1,8 +1,9 @@
 package com.tiger.curious.guide.plugin;
 
 import android.databinding.BindingAdapter;
-import android.databinding.BindingMethod;
+import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
@@ -18,35 +19,28 @@ import java.util.List;
  */
 
 public class GridViewBinding {
+    final static String TAG = "GridViewBinding";
+
 
     @BindingAdapter("gridEntities")
     public static void populateGridView(GridView targetView, List<Key> data) {
-        targetView.setAdapter(new SAdapter(data));
+
+        if (targetView.getAdapter() == null) {
+            targetView.setAdapter(new SAdapter(data));
+            return;
+        }
+
+        ((SAdapter) targetView.getAdapter()).updateDataSource(data);
+
     }
 
 
-    @BindingAdapter("onItemClickListener")
+    @BindingAdapter("itemClickListener")
     public static void attachListener(final GridView targetView, OnKeyClickedListener listener) {
 
         if (targetView.getTag(R.id.onKeyClickedListener) == null) {
             targetView.setTag(R.id.onKeyClickedListener, listener);
         }
-
-
-        if (targetView.getOnItemClickListener() == null) {
-
-            targetView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    OnKeyClickedListener listener = (OnKeyClickedListener) parent.getTag(R.id.onKeyClickedListener);
-
-                    listener.onClicked((Key) parent.getItemAtPosition(position));
-
-                }
-            });
-        }
-
 
     }
 }

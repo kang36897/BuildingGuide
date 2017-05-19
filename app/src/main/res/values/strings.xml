@@ -1,19 +1,11 @@
 <resources>
-    <string name="app_name">BuildingGuide</string>
+    <string name="app_name" translatable="false">BuildingGuide</string>
     <string name="area_floor_input">Input floor number</string>
     <string name="area_company_input">Input company name</string>
+    <string name="btn_delete"><![CDATA[<-]]></string>
+    <string name="search_action">Search</string>
+    <string name="title_search_result">Search Result</string>
+    <string name="building_name">Hua Dian Building</string>
 
 
-    <string-array name="number_key">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-    </string-array>
 </resources>

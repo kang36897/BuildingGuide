@@ -10,14 +10,15 @@
     </data>
 
     <TextView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@drawable/bg_key"
         android:gravity="center"
-        android:onClick="@{()->model.onClick()}"
+        android:onClick="@{v->model.onClick(v)}"
+        android:padding="8dp"
         android:text="@{model.key.value}"
-        android:textColor="#000"
-        android:textSize="16sp"
+        android:textColor="@color/fg_key_text_color"
+        android:textSize="22sp"
         android:textStyle="bold"
         tools:text="0"/>
 </layout>

@@ -31,6 +31,7 @@ public class SAdapter extends GenericAdapter<Key> {
 
             holder = new VHolder(parent);
             convertView = holder.getView();
+            convertView.setTag(holder);
         } else {
 
             holder = (VHolder) convertView.getTag();
@@ -39,6 +40,11 @@ public class SAdapter extends GenericAdapter<Key> {
         holder.populate(mData.get(position));
 
         return convertView;
+    }
+
+    public void updateDataSource(List<Key> data) {
+        mData = data;
+        notifyDataSetChanged();
     }
 
     static class VHolder {

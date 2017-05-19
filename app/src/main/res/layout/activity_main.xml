@@ -6,27 +6,79 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/left_panel"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@color/banner_color">
+
+            <ImageView
+                android:layout_width="108dp"
+                android:layout_height="66dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginStart="151dp"
+                android:layout_marginTop="48dp"
+                android:scaleType="matrix"
+                android:src="@drawable/building_logo"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/building_name"
+                android:textColor="@color/banner_text_color"
+                android:textSize="@dimen/banner_text_size"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.5">
+            android:background="@drawable/bg_whole"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/left_panel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="562dp"
+                    android:layout_height="848dp"
+                    android:layout_marginStart="282dp"
+                    android:layout_marginTop="72dp"
+                    android:src="@drawable/building"/>
+
+                <FrameLayout
+                    android:id="@+id/result_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="84dp"
+                    android:layout_marginStart="133dp"
+                    android:layout_marginTop="96dp">
+
+                </FrameLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/right_panel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingBottom="84dp"
+                android:paddingEnd="160dp"
+                android:paddingStart="56dp"
+                android:paddingTop="144dp">
 
 
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/right_pannel"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-
-        </FrameLayout>
-
+            </FrameLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </layout>

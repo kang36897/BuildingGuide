@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.tiger.curious.guide.vmodel.ItemResultModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="72dp"
+            android:text="@{model.company.roomNumber}"
+            android:textColor="@color/item_text_highlight"
+            android:textSize="@dimen/item_normal_text_size"
+            android:textStyle="bold"
+            tools:text="1100"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{model.company.name}"
+            android:textColor="@color/text_default_color"
+            android:textSize="@dimen/item_normal_text_size"
+            tools:text="华电集团有限公司"/>
+    </LinearLayout>
+
+</layout>

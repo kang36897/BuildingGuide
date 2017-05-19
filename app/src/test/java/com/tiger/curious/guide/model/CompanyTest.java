@@ -2,6 +2,7 @@ package com.tiger.curious.guide.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.tiger.curious.guide.utils.ChineseUtils;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,6 +28,7 @@ public class CompanyTest {
         temp.setEnglishName("Pwc Us Ltd. Shanghai SDC");
         temp.setFloor(1);
         temp.setRoomNumber("101");
+        temp.setAbbreviation(ChineseUtils.getSpells(temp.getName()).toUpperCase());
 
         System.out.println(mGson.toJson(temp));
     }

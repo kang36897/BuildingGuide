@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tiger.curious.guide.R;
+import com.tiger.curious.guide.contract.ControlView;
 import com.tiger.curious.guide.databinding.FragmentSearchBinding;
 import com.tiger.curious.guide.vmodel.SearchActionModel;
 
@@ -35,7 +36,7 @@ public class SearchFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mModel = new SearchActionModel();
+        mModel = new SearchActionModel((ControlView) getActivity());
         mBinding.setModel(mModel);
 
     }

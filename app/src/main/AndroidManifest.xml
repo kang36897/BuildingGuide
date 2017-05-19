@@ -3,6 +3,7 @@
           package="com.tiger.curious.guide">
 
     <application
+        android:name=".base.ChargeApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,9 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".activity.SplashActivity">
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.HOME"/>
+
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
