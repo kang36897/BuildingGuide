@@ -9,5 +9,5 @@
     <color name="banner_color">#202122</color>
     <color name="banner_text_color">#d2af65</color>
     <color name="btn_search_text_color">#ffffff</color>
-    <color name="prompt_color">#eaeaea</color>
+    <color name="prompt_color">#888888</color>
 </resources>

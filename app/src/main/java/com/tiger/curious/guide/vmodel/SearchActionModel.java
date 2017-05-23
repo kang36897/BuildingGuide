@@ -108,6 +108,17 @@ public class SearchActionModel extends BaseObservable implements OnKeyClickedLis
     private StringBuilder mCachedString = new StringBuilder();
 
 
+    private int visibility = View.GONE;
+
+    public int getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(int visibility) {
+        this.visibility = visibility;
+        notifyChange();
+    }
+
     @Override
     public void onClicked(Key key) {
         Log.d(TAG, key.toString());

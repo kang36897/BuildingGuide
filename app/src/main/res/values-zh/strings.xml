@@ -5,4 +5,5 @@
     <string name="search_action">搜索</string>
     <string name="title_search_result">搜索结果</string>
     <string name="building_name">华电大厦</string>
+    <string name="query_hint">输入关键字开始搜索</string>
 </resources>

@@ -12,10 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity {
 
-    private  Handler mImmerseHandler = new Handler();
-
-
-
+    protected Handler mSuperHandler = new Handler();
 
 
 }
