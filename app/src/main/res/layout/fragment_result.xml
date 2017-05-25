@@ -8,6 +8,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="model"
             type="com.tiger.curious.guide.vmodel.SearchResultModel"/>
@@ -20,28 +22,64 @@
         android:orientation="vertical"
         android:padding="40dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:text="@string/title_search_result"
-            android:textColor="@color/text_default_color"
-            android:textSize="@dimen/title_text_size"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:text="@string/title_search_result"
+                android:textColor="@color/text_default_color"
+                android:textSize="@dimen/title_text_size"/>
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center_vertical|right"
+                android:onClick="@{()->model.onClose()}"
+                android:src="@drawable/btn_close_panel"/>
+
+        </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="@color/title_and_content_splitter"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/result_list"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            tiger:recyclerEntities="@{model.results}"
-            tools:listitem="@layout/component_company_and_floor_info">
+            >
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/result_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tiger:recyclerEntities="@{model.results}"
+                tools:listitem="@layout/component_company_and_floor_info">
+
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/hint_no_result"
+                android:textColor="@color/text_default_color"
+                android:textSize="30sp"
+                android:visibility="@{(model.results == null || model.results.isEmpty()) ?  View.VISIBLE : View.GONE}"
+                tools:text="No result, Please try again!"/>
+
+        </FrameLayout>
+
 
         <View
             android:layout_width="match_parent"

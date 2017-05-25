@@ -6,4 +6,5 @@
     <string name="title_search_result">搜索结果</string>
     <string name="building_name">华电大厦</string>
     <string name="query_hint">输入关键字开始搜索</string>
+    <string name="hint_no_result">没有匹配的结果，请重新输入查询条件</string>
 </resources>

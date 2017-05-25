@@ -31,20 +31,16 @@ public class ChargeApplication extends BaseApplication {
     //TODO reuse the process of loading data
     private void initData() {
         String[] data = new String[]{
-                "{\"name\":\"田螺(上海)技术有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"101\",\"floor\":1}",
-                "{\"name\":\"天喔(上海)技术有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"102\",\"floor\":1}",
-                "{\"name\":\"黑陀螺技术有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"103\",\"floor\":1}",
-                "{\"name\":\"美女技术有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"104\",\"floor\":1}",
+                "{\"name\":\"_上海通华燃气轮机服务有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"1702\",\"floor\":17, \"group\":\"中国华电集团公司\"}",
+                "{\"name\":\"上海华滨投资有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"1701\",\"floor\":17, \"group\":\"中国华电集团公司\"}",
 
-                "{\"name\":\"美好时光有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"201\",\"floor\":2}",
-                "{\"name\":\"伊莱克斯有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"202\",\"floor\":2}",
-                "{\"name\":\"温碧泉有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"203\",\"floor\":2}",
-                "{\"name\":\"天天有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"204\",\"floor\":2}",
+                "{\"name\":\"华鑫国际信托有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"1601\",\"floor\":16, \"group\":\"中国华电集团公司\"}",
+                "{\"name\":\"华远星海运有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"1602\",\"floor\":16, \"group\":\"中国华电集团公司\"}",
 
-                "{\"name\":\"战国有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"301\",\"floor\":3}",
-                "{\"name\":\"栈道游戏有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"302\",\"floor\":3}",
-                "{\"name\":\"圣雄时代有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"303\",\"floor\":3}",
-                "{\"name\":\"柏拉图有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"304\",\"floor\":3}",
+                "{\"name\":\"华电重工股份有限公司上海分公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"1501\",\"floor\":15, \"group\":\"中国华电集团公司\"}",
+
+                "{\"name\":\"上海公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"2501\",\"floor\":25, \"group\":\"中国华电集团公司\"}",
+
         };
 
         Gson gson = new GsonBuilder().create();
@@ -59,7 +55,7 @@ public class ChargeApplication extends BaseApplication {
 
         for (String item : data) {
             Company company = gson.fromJson(item, Company.class);
-            company.setAbbreviation(ChineseUtils.getSpells(company.getName()));
+            company.setAbbreviation(ChineseUtils.getSpells(company.getGroup() + company.getName()));
 
             session.getCompanyDao().insert(company);
         }

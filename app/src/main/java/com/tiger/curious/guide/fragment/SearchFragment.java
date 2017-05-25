@@ -46,9 +46,18 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 mBinding.searchView.setCursorVisible(true);
-                mModel.setVisibility(View.VISIBLE);
+                mModel.setVisibilityOfKeyboard(View.VISIBLE);
                 return false;
             }
         });
+    }
+
+
+    public void hideKeyboard() {
+        if (mModel == null) {
+            return;
+        }
+
+        mModel.setVisibilityOfKeyboard(View.GONE);
     }
 }

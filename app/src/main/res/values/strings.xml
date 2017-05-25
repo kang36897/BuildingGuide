@@ -7,6 +7,7 @@
     <string name="title_search_result">Search Result</string>
     <string name="building_name">Hua Dian Building</string>
     <string name="query_hint">Click here to start querying</string>
+    <string name="hint_no_result">No result, Please try again!</string>
 
 
 </resources>

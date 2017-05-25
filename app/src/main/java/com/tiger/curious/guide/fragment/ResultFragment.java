@@ -78,7 +78,7 @@ public class ResultFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mModel = new SearchResultModel();
+        mModel = new SearchResultModel((ControlView) getActivity());
         mBinding.setModel(mModel);
 
         mModel.setResults(mData);
@@ -89,4 +89,6 @@ public class ResultFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
     }
+
+
 }

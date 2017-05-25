@@ -96,6 +96,12 @@
 
             </FrameLayout>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/hidden_btn"
+            android:background="#ff0000"
+            android:layout_width="48dp"
+            android:layout_height="48dp"/>
     </FrameLayout>
 
 </layout>

@@ -30,6 +30,7 @@ public class CompanyDao extends AbstractDao<Company, Long> {
         public final static Property RoomNumber = new Property(3, String.class, "roomNumber", false, "ROOM_NUMBER");
         public final static Property Floor = new Property(4, int.class, "floor", false, "FLOOR");
         public final static Property Abbreviation = new Property(5, String.class, "abbreviation", false, "ABBREVIATION");
+        public final static Property Group = new Property(6, String.class, "group", false, "GROUP");
     }
 
     private DaoSession daoSession;
@@ -53,7 +54,8 @@ public class CompanyDao extends AbstractDao<Company, Long> {
                 "\"ENGLISH_NAME\" TEXT," + // 2: englishName
                 "\"ROOM_NUMBER\" TEXT," + // 3: roomNumber
                 "\"FLOOR\" INTEGER NOT NULL ," + // 4: floor
-                "\"ABBREVIATION\" TEXT);"); // 5: abbreviation
+                "\"ABBREVIATION\" TEXT," + // 5: abbreviation
+                "\"GROUP\" TEXT);"); // 6: group
     }
 
     /** Drops the underlying database table. */
@@ -91,6 +93,11 @@ public class CompanyDao extends AbstractDao<Company, Long> {
         if (abbreviation != null) {
             stmt.bindString(6, abbreviation);
         }
+ 
+        String group = entity.getGroup();
+        if (group != null) {
+            stmt.bindString(7, group);
+        }
     }
 
     @Override
@@ -122,6 +129,11 @@ public class CompanyDao extends AbstractDao<Company, Long> {
         if (abbreviation != null) {
             stmt.bindString(6, abbreviation);
         }
+ 
+        String group = entity.getGroup();
+        if (group != null) {
+            stmt.bindString(7, group);
+        }
     }
 
     @Override
@@ -143,7 +155,8 @@ public class CompanyDao extends AbstractDao<Company, Long> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // englishName
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // roomNumber
             cursor.getInt(offset + 4), // floor
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // abbreviation
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // abbreviation
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // group
         );
         return entity;
     }
@@ -156,6 +169,7 @@ public class CompanyDao extends AbstractDao<Company, Long> {
         entity.setRoomNumber(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setFloor(cursor.getInt(offset + 4));
         entity.setAbbreviation(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setGroup(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     @Override

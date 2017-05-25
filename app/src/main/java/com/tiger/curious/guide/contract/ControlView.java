@@ -11,4 +11,6 @@ import java.util.List;
 public interface ControlView {
 
     public void showSearchResult(List<Company> companyList);
+
+    void hideSearchResult();
 }

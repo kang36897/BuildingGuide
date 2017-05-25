@@ -24,6 +24,7 @@ public class CompanyTest {
     public void testGenerateJson() {
         Company temp = new Company();
 
+        temp.setGroup("普华永道集团");
         temp.setName("普华永道(上海)技术有限公司");
         temp.setEnglishName("Pwc Us Ltd. Shanghai SDC");
         temp.setFloor(1);

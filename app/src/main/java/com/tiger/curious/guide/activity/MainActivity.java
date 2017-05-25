@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.tiger.curious.guide.R;
 import com.tiger.curious.guide.base.BaseActivity;
@@ -20,6 +21,7 @@ import com.tiger.curious.guide.vmodel.TimeAreaModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,15 +34,18 @@ public class MainActivity extends BaseActivity implements ControlView {
     private static final long HIDDEN_DURATION = DURATION * 3;
     private static final long FULLSCREEN_CHECK = HIDDEN_DURATION;
 
+    private static final long VALID_INTERVAL = 1000;
+    private long mOriginal = Long.MIN_VALUE;
+    private int mCount = 0;
+
     private ActivityMainBinding mBinding;
 
     private TimeAreaModel mTimeModel;
 
-    private final Calendar mCalendar = Calendar.getInstance();
     private final Runnable mTimeUpdateTicket = new Runnable() {
         @Override
         public void run() {
-            mTimeModel.update(mCalendar.getTime());
+            mTimeModel.update(new Date());
 
             mSuperHandler.postDelayed(this, DURATION);
         }
@@ -49,21 +54,40 @@ public class MainActivity extends BaseActivity implements ControlView {
     private final Runnable mHiddenResultPanel = new Runnable() {
         @Override
         public void run() {
-            Fragment fragment = getSupportFragmentManager()
-                    .findFragmentByTag(ResultFragment.TAG);
+            hideResultFragment();
 
-            if (fragment == null) {
-                return;
-            }
+            hideSearchKeyboard();
 
-            ResultFragment leftPanel = (ResultFragment) fragment;
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .hide(leftPanel)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                    .commit();
+
         }
     };
+
+    private void hideSearchKeyboard() {
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(SearchFragment.TAG);
+
+        if (fragment == null) {
+            return;
+        }
+
+        SearchFragment rightPanel = (SearchFragment) fragment;
+        rightPanel.hideKeyboard();
+    }
+
+    private void hideResultFragment() {
+        Fragment fragment = getSupportFragmentManager()
+                .findFragmentByTag(ResultFragment.TAG);
+
+        if (fragment == null) {
+            return;
+        }
+
+        ResultFragment leftPanel = (ResultFragment) fragment;
+        getSupportFragmentManager()
+                .beginTransaction()
+                .hide(leftPanel)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
+    }
 
     private final Runnable mEnterImmersiveMode = new Runnable() {
         @Override
@@ -77,6 +101,9 @@ public class MainActivity extends BaseActivity implements ControlView {
                                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
             }
+
+            mOriginal = Long.MIN_VALUE;
+            mCount = 0;
 
             mSuperHandler.postDelayed(mEnterImmersiveMode, FULLSCREEN_CHECK);
         }
@@ -100,6 +127,43 @@ public class MainActivity extends BaseActivity implements ControlView {
         }
 
         mSuperHandler.post(mEnterImmersiveMode);
+
+
+        mBinding.hiddenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCount > 3) {
+                    return;
+                }
+
+                if (mOriginal != Long.MIN_VALUE) {
+
+                    if (mOriginal + VALID_INTERVAL < System.currentTimeMillis()) {
+                        mOriginal = Long.MIN_VALUE;
+                        mCount = 0;
+                        return;
+                    }
+
+                }
+
+                mCount++;
+
+                Toast.makeText(MainActivity.this, "click -> " + mCount, Toast.LENGTH_SHORT).show();
+                if (mCount == 3) {
+                    //exit the full screen  mode
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                        getWindow().getDecorView().setSystemUiVisibility(
+                                View.SYSTEM_UI_FLAG_VISIBLE);
+                    }
+
+
+                    mSuperHandler.removeCallbacks(mEnterImmersiveMode);
+                    mSuperHandler.postDelayed(mEnterImmersiveMode, FULLSCREEN_CHECK);
+                }
+
+            }
+        });
 
     }
 
@@ -137,6 +201,11 @@ public class MainActivity extends BaseActivity implements ControlView {
         }
 
 
+    }
+
+    @Override
+    public void hideSearchResult() {
+        hideResultFragment();
     }
 
     @Override

@@ -20,6 +20,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginEnd="72dp"
             android:text="@{model.company.roomNumber}"
             android:textColor="@color/item_text_highlight"
@@ -27,13 +28,30 @@
             android:textStyle="bold"
             tools:text="1100"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{model.company.name}"
-            android:textColor="@color/text_default_color"
-            android:textSize="@dimen/item_normal_text_size"
-            tools:text="华电集团有限公司"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_default_color"
+                android:textSize="@dimen/item_sub_text_size"
+                android:layout_marginBottom="4dp"
+                android:text="@{model.company.group}"
+                tools:text="华电集团有限公司"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{model.company.name.split("_")[1]}'
+                android:textColor="@color/text_default_color"
+                android:textSize="@dimen/item_normal_text_size"
+                tools:text="华电集团有限公司"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </layout>

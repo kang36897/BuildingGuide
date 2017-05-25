@@ -108,14 +108,14 @@ public class SearchActionModel extends BaseObservable implements OnKeyClickedLis
     private StringBuilder mCachedString = new StringBuilder();
 
 
-    private int visibility = View.GONE;
+    private int visibilityOfKeyboard = View.GONE;
 
-    public int getVisibility() {
-        return visibility;
+    public int getVisibilityOfKeyboard() {
+        return visibilityOfKeyboard;
     }
 
-    public void setVisibility(int visibility) {
-        this.visibility = visibility;
+    public void setVisibilityOfKeyboard(int visibilityOfKeyboard) {
+        this.visibilityOfKeyboard = visibilityOfKeyboard;
         notifyChange();
     }
 
