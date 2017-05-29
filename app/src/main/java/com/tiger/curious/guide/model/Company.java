@@ -51,7 +51,7 @@ public class Company implements Parcelable {
 
     @Generated(hash = 623507712)
     public Company(Long id, String name, String englishName, String roomNumber, int floor,
-            String abbreviation, String group) {
+                   String abbreviation, String group) {
         this.id = id;
         this.name = name;
         this.englishName = englishName;
@@ -204,5 +204,16 @@ public class Company implements Parcelable {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", englishName='" + englishName + '\'' +
+                ", roomNumber='" + roomNumber + '\'' +
+                ", floor=" + floor +
+                ", abbreviation='" + abbreviation + '\'' +
+                ", group='" + group + '\'' +
+                '}';
+    }
 }

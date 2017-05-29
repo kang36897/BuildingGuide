@@ -1,13 +1,21 @@
 package com.tiger.curious.guide.base;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.tiger.curious.guide.R;
 import com.tiger.curious.guide.database.DaoMaster;
 import com.tiger.curious.guide.database.DaoSession;
 import com.tiger.curious.guide.model.Company;
 import com.tiger.curious.guide.utils.ChineseUtils;
+import com.tiger.curious.guide.utils.JsonUtils;
 
 import org.greenrobot.greendao.database.Database;
+
+import java.util.List;
+import java.util.concurrent.Callable;
+
+import io.reactivex.Observable;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by bkang016 on 5/17/17.
@@ -30,36 +38,35 @@ public class ChargeApplication extends BaseApplication {
 
     //TODO reuse the process of loading data
     private void initData() {
-        String[] data = new String[]{
-                "{\"name\":\"_上海通华燃气轮机服务有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"1702\",\"floor\":17, \"group\":\"中国华电集团公司\"}",
-                "{\"name\":\"上海华滨投资有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"1701\",\"floor\":17, \"group\":\"中国华电集团公司\"}",
+        Observable.fromCallable(new Callable<List<Company>>() {
+            @Override
+            public List<Company> call() throws Exception {
+                return JsonUtils.readFrom(getApplicationContext(), R.raw.arrangement);
+            }
+        }).observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).subscribe(new Consumer<List<Company>>() {
+            @Override
+            public void accept(@NonNull List<Company> companyList) throws Exception {
 
-                "{\"name\":\"华鑫国际信托有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"1601\",\"floor\":16, \"group\":\"中国华电集团公司\"}",
-                "{\"name\":\"华远星海运有限公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"1602\",\"floor\":16, \"group\":\"中国华电集团公司\"}",
 
-                "{\"name\":\"华电重工股份有限公司上海分公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"1501\",\"floor\":15, \"group\":\"中国华电集团公司\"}",
+                initDatabase(companyList);
+            }
+        });
 
-                "{\"name\":\"上海公司\",\"englishName\":\"Pwc Us Ltd. Shanghai SDC\",\"roomNumber\":\"2501\",\"floor\":25, \"group\":\"中国华电集团公司\"}",
+    }
 
-        };
-
-        Gson gson = new GsonBuilder().create();
-
-        Database db = new DaoMaster.DevOpenHelper(this, "building").getWritableDb();
-
+    private void initDatabase(@NonNull List<Company> companyList) {
+        Database db = new DaoMaster.DevOpenHelper(getApplicationContext(), "building").getWritableDb();
 
         DaoMaster daoMaster = new DaoMaster(db);
         DaoSession session = daoMaster.newSession();
 
         session.getCompanyDao().deleteAll();
 
-        for (String item : data) {
-            Company company = gson.fromJson(item, Company.class);
+        for (Company company : companyList) {
             company.setAbbreviation(ChineseUtils.getSpells(company.getGroup() + company.getName()));
 
             session.getCompanyDao().insert(company);
         }
-
     }
 
 
