@@ -143,8 +143,6 @@ public class ExcelUtils {
 
             }
 
-            System.out.print(company);
-
             container.add(company);
         }
     }

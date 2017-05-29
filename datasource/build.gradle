@@ -1,14 +1,25 @@
 apply plugin: 'java'
+sourceSets {
 
+    main {
+        output.resourcesDir = output.classesDir
+    }
+
+    test {
+        output.resourcesDir = output.classesDir
+    }
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'org.apache.poi:poi:3.16'
     compile 'org.apache.poi:poi-ooxml:3.16'
     compile 'org.apache.poi:poi-ooxml-schemas:3.16'
+    compile 'com.google.code.gson:gson:2.8.0'
 
     testCompile 'junit:junit:4.12'
 }
+
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
