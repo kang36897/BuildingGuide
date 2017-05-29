@@ -63,8 +63,6 @@ public class ChargeApplication extends BaseApplication {
         session.getCompanyDao().deleteAll();
 
         for (Company company : companyList) {
-            company.setAbbreviation(ChineseUtils.getSpells(company.getGroup() + company.getName()));
-
             session.getCompanyDao().insert(company);
         }
     }
