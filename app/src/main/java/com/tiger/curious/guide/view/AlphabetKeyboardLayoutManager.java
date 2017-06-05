@@ -25,40 +25,29 @@ public class AlphabetKeyboardLayoutManager extends RecyclerView.LayoutManager {
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
         super.onLayoutChildren(recycler, state);
 
-        //cache the attached views first
-        mCachedViews = new SparseArray<>(getChildCount());
-        for (int i = 0; i < getChildCount(); i++) {
-            mCachedViews.put(i, getChildAt(i));
-        }
-
         //detach all attached views
         detachAndScrapAttachedViews(recycler);
 
-        int widthUsed = 0;
-        int heightUsed = 0;
-
         View child = null;
-
-
         int dalt = getPaddingStart() + getPaddingEnd();
 
         int left = getPaddingLeft();
         int top = getPaddingTop();
 
+        int fixedWidth = (getWidth() - dalt) / mColumns[0];
+        int fixedHeight = fixedWidth;
+
         for (int i = 0; i < mColumns[0]; i++) {
             child = recycler.getViewForPosition(i);
+            addView(child, i);
 
-            measureChildWithMargins(child, widthUsed, heightUsed);
-            widthUsed += child.getMeasuredWidth();
-
-            layoutDecoratedWithMargins(child, left, top, left + child.getMeasuredWidth(),
+            child.measure(View.MeasureSpec.makeMeasureSpec(fixedWidth, View.MeasureSpec.EXACTLY),
+                    View.MeasureSpec.makeMeasureSpec(fixedHeight, View.MeasureSpec.EXACTLY));
+            layoutDecorated(child, left, top, left + child.getMeasuredWidth(),
                     top + child.getMeasuredHeight());
 
             left += child.getMeasuredWidth();
         }
-
-        int fixedWidth = child.getMeasuredWidth();
-        int fixedHeight = child.getMeasuredHeight();
 
 
         int extra = getWidth() - fixedWidth * mColumns[1] - dalt;
@@ -69,11 +58,11 @@ public class AlphabetKeyboardLayoutManager extends RecyclerView.LayoutManager {
         for (int j = 0; j < mColumns[1]; j++) {
 
             child = recycler.getViewForPosition(j + mColumns[0]);
+            addView(child, j + mColumns[0]);
 
             child.measure(View.MeasureSpec.makeMeasureSpec(fixedWidth, View.MeasureSpec.EXACTLY),
                     View.MeasureSpec.makeMeasureSpec(fixedHeight, View.MeasureSpec.EXACTLY));
-
-            layoutDecoratedWithMargins(child, left, top, left + child.getMeasuredWidth(),
+            layoutDecorated(child, left, top, left + child.getMeasuredWidth(),
                     top + child.getMeasuredHeight());
 
             left += child.getMeasuredWidth();
@@ -90,21 +79,23 @@ public class AlphabetKeyboardLayoutManager extends RecyclerView.LayoutManager {
 
             for (int k = 0; k < mColumns[2] - 1; k++) {
                 child = recycler.getViewForPosition(k + mColumns[0] + mColumns[1]);
+                addView(child, k + mColumns[0] + mColumns[1]);
 
                 child.measure(View.MeasureSpec.makeMeasureSpec(fixedWidth, View.MeasureSpec.EXACTLY),
                         View.MeasureSpec.makeMeasureSpec(fixedHeight, View.MeasureSpec.EXACTLY));
 
-                layoutDecoratedWithMargins(child, left, top, left + child.getMeasuredWidth(),
+                layoutDecorated(child, left, top, left + child.getMeasuredWidth(),
                         top + child.getMeasuredHeight());
                 left += child.getMeasuredWidth();
             }
 
             left += room;
             child = recycler.getViewForPosition(state.getItemCount() - 1);
+            addView(child, state.getItemCount() - 1);
 
             child.measure(View.MeasureSpec.makeMeasureSpec(fixedWidth, View.MeasureSpec.EXACTLY),
                     View.MeasureSpec.makeMeasureSpec(fixedHeight, View.MeasureSpec.EXACTLY));
-            layoutDecoratedWithMargins(child, left, top, left + child.getMeasuredWidth(),
+            layoutDecorated(child, left, top, left + child.getMeasuredWidth(),
                     top + child.getMeasuredHeight());
 
         } else {
@@ -115,11 +106,12 @@ public class AlphabetKeyboardLayoutManager extends RecyclerView.LayoutManager {
 
             for (int k = 0; k < mColumns[2]; k++) {
                 child = recycler.getViewForPosition(k + mColumns[0] + mColumns[1]);
+                addView(child, k + mColumns[0] + mColumns[1]);
 
                 child.measure(View.MeasureSpec.makeMeasureSpec(fixedWidth, View.MeasureSpec.EXACTLY),
                         View.MeasureSpec.makeMeasureSpec(fixedHeight, View.MeasureSpec.EXACTLY));
 
-                layoutDecoratedWithMargins(child, left, top, left + child.getMeasuredWidth(),
+                layoutDecorated(child, left, top, left + child.getMeasuredWidth(),
                         top + child.getMeasuredHeight());
 
                 left += child.getMeasuredWidth();
@@ -128,7 +120,6 @@ public class AlphabetKeyboardLayoutManager extends RecyclerView.LayoutManager {
 
 
         }
-
 
     }
 

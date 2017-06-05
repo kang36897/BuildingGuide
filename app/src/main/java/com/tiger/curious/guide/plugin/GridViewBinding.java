@@ -1,14 +1,8 @@
 package com.tiger.curious.guide.plugin;
 
 import android.databinding.BindingAdapter;
-import android.util.Log;
-import android.view.View;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.tiger.curious.guide.R;
-import com.tiger.curious.guide.base.OnKeyClickedListener;
 import com.tiger.curious.guide.model.Key;
 import com.tiger.curious.guide.plugin.adapter.SAdapter;
 
@@ -34,13 +28,4 @@ public class GridViewBinding {
 
     }
 
-
-    @BindingAdapter("itemClickListener")
-    public static void attachListener(final GridView targetView, OnKeyClickedListener listener) {
-
-        if (targetView.getTag(R.id.onKeyClickedListener) == null) {
-            targetView.setTag(R.id.onKeyClickedListener, listener);
-        }
-
-    }
 }
