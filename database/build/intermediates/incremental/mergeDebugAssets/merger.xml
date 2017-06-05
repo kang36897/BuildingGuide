@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/bkang016/work-station/git-repository/BuildingGuide/database/src/main/assets"/><source path="/Users/bkang016/work-station/git-repository/BuildingGuide/database/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/bkang016/work-station/git-repository/BuildingGuide/database/src/debug/assets"/></dataSet></merger>

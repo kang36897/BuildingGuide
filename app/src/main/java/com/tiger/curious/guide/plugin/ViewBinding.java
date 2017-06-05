@@ -5,8 +5,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.databinding.BindingAdapter;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridView;
 
 import com.tiger.curious.guide.R;
+import com.tiger.curious.guide.base.OnKeyClickedListener;
 
 /**
  * Created by bkang016 on 5/20/17.
@@ -65,5 +68,15 @@ public class ViewBinding {
         });
 
         alpha.start();
+    }
+
+
+    @BindingAdapter("itemClickListener")
+    public static void attachListener(final ViewGroup targetView, OnKeyClickedListener listener) {
+
+        if (targetView.getTag(R.id.onKeyClickedListener) == null) {
+            targetView.setTag(R.id.onKeyClickedListener, listener);
+        }
+
     }
 }
