@@ -31,7 +31,8 @@ public class AlphabetKeyboardLayoutManager extends RecyclerView.LayoutManager {
         }
 
         //cache the attached views first
-//        mCachedViews = new SparseArray<>(getChildCount());
+//          mCachedViews = new SparseArray<>(getChildCount());
+
 //        for (int i = 0; i < getChildCount(); i++) {
 //            mCachedViews.put(i, getChildAt(i));
 //        }
@@ -60,6 +61,8 @@ public class AlphabetKeyboardLayoutManager extends RecyclerView.LayoutManager {
             child.measure(View.MeasureSpec.makeMeasureSpec(fixedWidth, View.MeasureSpec.EXACTLY),
                     View.MeasureSpec.makeMeasureSpec(fixedHeight, View.MeasureSpec.EXACTLY));
 
+            addView(child);
+
             layoutDecorated(child, left, top, left + child.getMeasuredWidth(),
                     top + child.getMeasuredHeight());
 
@@ -79,6 +82,7 @@ public class AlphabetKeyboardLayoutManager extends RecyclerView.LayoutManager {
             child.measure(View.MeasureSpec.makeMeasureSpec(fixedWidth, View.MeasureSpec.EXACTLY),
                     View.MeasureSpec.makeMeasureSpec(fixedHeight, View.MeasureSpec.EXACTLY));
 
+            addView(child);
             layoutDecorated(child, left, top, left + child.getMeasuredWidth(),
                     top + child.getMeasuredHeight());
 
@@ -100,19 +104,21 @@ public class AlphabetKeyboardLayoutManager extends RecyclerView.LayoutManager {
                 child.measure(View.MeasureSpec.makeMeasureSpec(fixedWidth, View.MeasureSpec.EXACTLY),
                         View.MeasureSpec.makeMeasureSpec(fixedHeight, View.MeasureSpec.EXACTLY));
 
+                addView(child);
                 layoutDecorated(child, left, top, left + child.getMeasuredWidth(),
                         top + child.getMeasuredHeight());
                 left += child.getMeasuredWidth();
             }
 
-            //layout the last one
-//            left += room;
-//            child = recycler.getViewForPosition(state.getItemCount() - 1);
-//
-//            child.measure(View.MeasureSpec.makeMeasureSpec(fixedWidth, View.MeasureSpec.EXACTLY),
-//                    View.MeasureSpec.makeMeasureSpec(fixedHeight, View.MeasureSpec.EXACTLY));
-//            layoutDecorated(child, left, top, left + child.getMeasuredWidth(),
-//                    top + child.getMeasuredHeight());
+            // layout the last one
+            left += room;
+            child = recycler.getViewForPosition(state.getItemCount() - 1);
+
+            child.measure(View.MeasureSpec.makeMeasureSpec(fixedWidth, View.MeasureSpec.EXACTLY),
+                    View.MeasureSpec.makeMeasureSpec(fixedHeight, View.MeasureSpec.EXACTLY));
+            addView(child);
+            layoutDecorated(child, left, top, left + child.getMeasuredWidth(),
+                    top + child.getMeasuredHeight());
 
         } else {
 
