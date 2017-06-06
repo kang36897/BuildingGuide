@@ -21,20 +21,17 @@ import java.util.List;
 
 public class RecyclerKeyAdapter extends RecyclerView.Adapter<RecyclerKeyAdapter.KeyViewHolder> {
 
-    final static int TYPE_ACTION_KEY = -1;
-
+    final static int TYPE_ACTION_VIEW = -1;
     private List<Key> mData = Collections.EMPTY_LIST;
 
     public RecyclerKeyAdapter(List<Key> data) {
         mData = data;
     }
 
-
     @Override
     public int getItemViewType(int position) {
-
         if (position == mData.size() - 1) {
-            return TYPE_ACTION_KEY;
+            return TYPE_ACTION_VIEW;
         }
 
         return super.getItemViewType(position);
@@ -42,27 +39,23 @@ public class RecyclerKeyAdapter extends RecyclerView.Adapter<RecyclerKeyAdapter.
 
     @Override
     public KeyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         ViewDataBinding binding = null;
-//        if (viewType == TYPE_ACTION_KEY) {
-//
-//            binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-//                    R.layout.component_action_in_keyboard,
-//                    parent, false);
-//        } else {
 
-        binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.component_button_in_keyboard,
-                parent, false);
-//        }
-//
+        if (viewType == TYPE_ACTION_VIEW) {
+            binding = DataBindingUtil
+                    .inflate(LayoutInflater.from(parent.getContext()),
+                            R.layout.component_action_in_keyboard, parent, false);
+        } else {
+            binding = DataBindingUtil
+                    .inflate(LayoutInflater.from(parent.getContext()),
+                            R.layout.component_button_in_keyboard, parent, false);
+        }
 
         return new KeyViewHolder(binding.getRoot());
     }
 
     @Override
     public void onBindViewHolder(KeyViewHolder holder, int position) {
-
         holder.populate(mData.get(position));
     }
 
@@ -78,25 +71,21 @@ public class RecyclerKeyAdapter extends RecyclerView.Adapter<RecyclerKeyAdapter.
     }
 
     static class KeyViewHolder extends RecyclerView.ViewHolder {
-
-        private KeyModel mModel;
         private ViewDataBinding mBinding;
-
+        private KeyModel mModel;
 
         public KeyViewHolder(View itemView) {
             super(itemView);
-            mBinding = DataBindingUtil.findBinding(itemView);
+
             mModel = new KeyModel();
+            mBinding = DataBindingUtil.findBinding(itemView);
             mBinding.setVariable(BR.model, mModel);
-        }
 
-        public View getView() {
-            return getView();
         }
 
 
-        public void populate(Key data) {
-            mModel.setKey(data);
+        public void populate(Key key) {
+            mModel.setKey(key);
             mBinding.executePendingBindings();
         }
     }

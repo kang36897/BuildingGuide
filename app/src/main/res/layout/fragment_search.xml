@@ -19,8 +19,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
 
         <Button
@@ -74,8 +73,7 @@
                 android:layout_marginTop="40dp"
                 android:text="@string/area_floor_input"
                 android:textColor="@color/prompt_color"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp"/>
 
             <View
                 android:layout_width="match_parent"
@@ -97,8 +95,7 @@
                 android:verticalSpacing="8dp"
                 tiger:gridEntities="@{SearchActionModel.NUMBER_KEYS}"
                 tiger:itemClickListener="@{model}"
-                tools:listitem="@layout/component_button_in_keyboard"
-                />
+                tools:listitem="@layout/component_button_in_keyboard"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,8 +104,7 @@
                 android:padding="16dp"
                 android:text="@string/area_company_input"
                 android:textColor="@color/prompt_color"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp"/>
 
             <View
                 android:layout_width="match_parent"
@@ -121,7 +117,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/panel_char"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
                 tiger:itemClickListener="@{model}"

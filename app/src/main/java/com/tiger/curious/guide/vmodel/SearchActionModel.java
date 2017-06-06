@@ -36,15 +36,16 @@ import io.reactivex.schedulers.Schedulers;
 public class SearchActionModel extends BaseObservable implements OnKeyClickedListener, Releasable {
 
     final static String TAG = "SearchActionModel";
-
+    final static int TYPE_SEARCH_BY_UNKNOWN = -1;
+    final static int TYPE_SEARCH_BY_FLOOR = 0;
+    final static int TYPE_SEARCH_BY_COMPANY = 1;
+    final static int TYPE_MODIFY_SEARCH_ACTION = 2;
     public static List<Key> NUMBER_KEYS = new ArrayList<>();
     public static List<Key> ALPHABET_KEYS = new ArrayList<>();
-
     public static String[] NUMBER = new String[]{
             "0", "1", "2", "3", "4",
             "5", "6", "7", "8", "9"
     };
-
     public static String[] ALPHABET = new String[]{
             "A", "B", "C", "D", "E", "F", "G",
             "H", "I", "J", "K", "L", "M", "N",
@@ -64,25 +65,31 @@ public class SearchActionModel extends BaseObservable implements OnKeyClickedLis
         ALPHABET_KEYS.add(Key.getAction(Key.TYPE_DELETE_ACTION));
     }
 
-    final static int TYPE_SEARCH_BY_UNKNOWN = -1;
-    final static int TYPE_SEARCH_BY_FLOOR = 0;
-    final static int TYPE_SEARCH_BY_COMPANY = 1;
-    final static int TYPE_MODIFY_SEARCH_ACTION = 2;
-
     private int searchType = TYPE_SEARCH_BY_UNKNOWN;
 
     private String inputContent;
+    private ControlView mControlView;
+    private StringBuilder mCachedString = new StringBuilder();
+    private int visibilityOfKeyboard = View.GONE;
+    private Disposable mSearchActionSubscription;
 
     public SearchActionModel() {
 
     }
 
-    private ControlView mControlView;
-
     public SearchActionModel(ControlView view) {
         mControlView = view;
     }
 
+    @BindingAdapter("input")
+    public static void updateSearchInput(EditText targetView, String content) {
+        targetView.setText(content);
+
+        if (TextUtils.isEmpty(content)) {
+            return;
+        }
+        targetView.setSelection(content.length());
+    }
 
     public int getSearchType() {
         return searchType;
@@ -104,11 +111,6 @@ public class SearchActionModel extends BaseObservable implements OnKeyClickedLis
     public List<Key> getNumberKeys() {
         return SearchActionModel.NUMBER_KEYS;
     }
-
-    private StringBuilder mCachedString = new StringBuilder();
-
-
-    private int visibilityOfKeyboard = View.GONE;
 
     public int getVisibilityOfKeyboard() {
         return visibilityOfKeyboard;
@@ -169,7 +171,6 @@ public class SearchActionModel extends BaseObservable implements OnKeyClickedLis
         setInputContent(mCachedString.toString());
     }
 
-
     public void performDeleteOperation() {
         onClicked(Key.getAction(Key.TYPE_DELETE_ACTION));
     }
@@ -186,20 +187,6 @@ public class SearchActionModel extends BaseObservable implements OnKeyClickedLis
             return TYPE_MODIFY_SEARCH_ACTION;
         }
     }
-
-
-    @BindingAdapter("input")
-    public static void updateSearchInput(EditText targetView, String content) {
-        targetView.setText(content);
-
-        if (TextUtils.isEmpty(content)) {
-            return;
-        }
-        targetView.setSelection(content.length());
-    }
-
-
-    private Disposable mSearchActionSubscription;
 
     public void onSearch(final View targetView) {
 

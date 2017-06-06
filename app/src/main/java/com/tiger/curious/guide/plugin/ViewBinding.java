@@ -6,7 +6,6 @@ import android.animation.ObjectAnimator;
 import android.databinding.BindingAdapter;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 
 import com.tiger.curious.guide.R;
 import com.tiger.curious.guide.base.OnKeyClickedListener;
@@ -69,7 +68,6 @@ public class ViewBinding {
 
         alpha.start();
     }
-
 
     @BindingAdapter("itemClickListener")
     public static void attachListener(final ViewGroup targetView, OnKeyClickedListener listener) {
