@@ -5,7 +5,6 @@ package com.tiger.curious.model;
  */
 
 public class Company {
-
     private String name;
 
     private String englishName;
@@ -17,7 +16,6 @@ public class Company {
     private String abbreviation;
 
     private String group;
-
 
     public String getName() {
         return name;
