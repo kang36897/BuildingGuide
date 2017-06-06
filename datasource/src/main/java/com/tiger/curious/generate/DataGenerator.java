@@ -2,7 +2,6 @@ package com.tiger.curious.generate;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import com.tiger.curious.model.Company;
 import com.tiger.curious.utils.ExcelUtils;
 
@@ -19,7 +18,6 @@ public class DataGenerator {
         Gson gson = new GsonBuilder().create();
         String json = gson.toJson(companyList);
         System.out.println(json);
-
 
 
     }
