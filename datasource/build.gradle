@@ -1,4 +1,5 @@
 apply plugin: 'java'
+
 sourceSets {
     main {
         output.resourcesDir = output.classesDir
@@ -7,18 +8,31 @@ sourceSets {
     test {
         output.resourcesDir = output.classesDir
     }
+
+
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'org.apache.poi:poi:3.16'
-    compile 'org.apache.poi:poi-ooxml:3.16'
-    compile 'org.apache.poi:poi-ooxml-schemas:3.16'
+    compile fileTree('libs')
     compile 'com.google.code.gson:gson:2.8.0'
-
     testCompile 'junit:junit:4.12'
 }
 
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
+//archivesBaseName = "CuriousTiger"
+
+for (File item : sourceSets.main.runtimeClasspath) {
+    println "runtime-path-->" + item.toString()
+}
+
+
+task GenerateData(type: JavaExec) {
+    group = "Objective"
+    description = "Run the main class to generate json files"
+
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.tiger.curious.generate.DataGenerator'
+}
+
