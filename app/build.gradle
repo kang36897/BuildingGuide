@@ -55,3 +55,12 @@ dependencies {
 }
 
 archivesBaseName = "BuildingGuide"
+
+File parent = android.sourceSets.main.res.srcDirs.iterator().next();
+project.ext.jsonDir = new File(parent, "raw")
+
+task deleteJsonRaw(type : Delete){
+    group = "Objective"
+    description = "Delete the old json file"
+    delete 'src/main/res/raw/arrangement.json'
+}

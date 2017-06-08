@@ -25,12 +25,20 @@ public class DataGenerator {
         System.out.println(json);
 
 
-        writeToJsonFile(json);
+        System.out.println("args=" + args.length);
+        if (args != null && args.length > 0) {
+            writeToJsonFile(json, args[0]);
+
+        } else {
+            String parent = new File(DataGenerator.class.getClassLoader()
+                    .getResource("arrangement.xlsx").toString()).getParent();
+            writeToJsonFile(json, parent);
+        }
     }
 
-    private static void writeToJsonFile(String json) throws IOException {
-        String parent = new File(DataGenerator.class.getClassLoader().getResource("arrangement.xlsx").toString()).getParent();
-        File jsonData = new File("arrangement.json");
+    private static void writeToJsonFile(String json, String parent) throws IOException {
+
+        File jsonData = new File(parent, "arrangement.json");
 
         System.out.println(jsonData.toString());
 
