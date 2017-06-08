@@ -1,8 +1,10 @@
 package com.tiger.curious.guide.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -132,7 +134,7 @@ public class MainActivity extends BaseActivity implements ControlView {
         mBinding.hiddenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mCount > 3) {
+                if (mCount > 2) {
                     return;
                 }
 
@@ -157,6 +159,9 @@ public class MainActivity extends BaseActivity implements ControlView {
                                 View.SYSTEM_UI_FLAG_VISIBLE);
                     }
 
+
+                    Intent settingsIntent = new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS);
+                    startActivity(settingsIntent);
 
                     mSuperHandler.removeCallbacks(mEnterImmersiveMode);
                     mSuperHandler.postDelayed(mEnterImmersiveMode, FULLSCREEN_CHECK);
