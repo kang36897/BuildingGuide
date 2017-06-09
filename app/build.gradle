@@ -12,6 +12,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -54,12 +55,11 @@ dependencies {
 
 }
 
-archivesBaseName = "BuildingGuide"
+archivesBaseName = rootProject.name + "-" + android.defaultConfig.versionName
 
-File parent = android.sourceSets.main.res.srcDirs.iterator().next();
-project.ext.jsonDir = new File(parent, "raw")
+project.ext.jsonDir = file("src/main/res/raw")
 
-task deleteJsonRaw(type : Delete){
+task deleteJsonRaw(type: Delete) {
     group = "Objective"
     description = "Delete the old json file"
     delete 'src/main/res/raw/arrangement.json'
