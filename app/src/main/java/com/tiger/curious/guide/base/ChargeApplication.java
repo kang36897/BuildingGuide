@@ -43,14 +43,22 @@ public class ChargeApplication extends BaseApplication {
             public List<Company> call() throws Exception {
                 return JsonUtils.readFrom(getApplicationContext(), R.raw.arrangement);
             }
-        }).observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).subscribe(new Consumer<List<Company>>() {
-            @Override
-            public void accept(@NonNull List<Company> companyList) throws Exception {
+        })
+                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<List<Company>>() {
+                    @Override
+                    public void accept(@NonNull List<Company> companyList) throws Exception {
+
+                        //add indexes for companies
+                        for (Company item : companyList) {
+                            item.setAbbreviation(ChineseUtils.getSpells(item.getGroup() + item.getName()));
+                        }
 
 
-                initDatabase(companyList);
-            }
-        });
+                        initDatabase(companyList);
+                    }
+                });
 
     }
 

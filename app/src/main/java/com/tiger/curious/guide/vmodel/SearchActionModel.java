@@ -63,7 +63,6 @@ public class SearchActionModel extends BaseObservable implements OnKeyClickedLis
         }
 
         ALPHABET_KEYS.add(Key.getAction(Key.TYPE_DELETE_ACTION));
-
     }
 
     private int searchType = TYPE_SEARCH_BY_UNKNOWN;

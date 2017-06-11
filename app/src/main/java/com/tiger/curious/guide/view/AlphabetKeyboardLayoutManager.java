@@ -21,9 +21,14 @@ public class AlphabetKeyboardLayoutManager extends RecyclerView.LayoutManager {
                 RecyclerView.LayoutParams.WRAP_CONTENT);
     }
 
+
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
         super.onLayoutChildren(recycler, state);
+
+        if (state.getItemCount() <= 0) {
+            return;
+        }
 
         //detach all attached views
         detachAndScrapAttachedViews(recycler);
@@ -89,6 +94,7 @@ public class AlphabetKeyboardLayoutManager extends RecyclerView.LayoutManager {
                 left += child.getMeasuredWidth();
             }
 
+            // layout the last one
             left += room;
             child = recycler.getViewForPosition(state.getItemCount() - 1);
             addView(child, state.getItemCount() - 1);

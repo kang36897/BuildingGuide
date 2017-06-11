@@ -30,7 +30,7 @@ public class RecyclerKeyAdapter extends RecyclerView.Adapter<RecyclerKeyAdapter.
 
     @Override
     public int getItemViewType(int position) {
-        if (position == getItemCount() - 1) {
+        if (position == mData.size() - 1) {
             return TYPE_ACTION_VIEW;
         }
 

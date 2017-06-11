@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tiger="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tiger="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <import
             alias="SearchActionModel"
-            type="com.tiger.curious.guide.vmodel.SearchActionModel" />
+            type="com.tiger.curious.guide.vmodel.SearchActionModel"/>
 
         <variable
             name="model"
-            type="SearchActionModel" />
+            type="SearchActionModel"/>
     </data>
 
 
@@ -42,7 +42,7 @@
             android:textStyle="bold"
             app:layout_constraintHorizontal_bias="0.964"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -73,7 +73,7 @@
                 android:layout_marginTop="40dp"
                 android:text="@string/area_floor_input"
                 android:textColor="@color/prompt_color"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
             <View
                 android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                 android:layout_marginEnd="40dp"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="24dp"
-                android:background="@color/title_and_content_splitter" />
+                android:background="@color/title_and_content_splitter"/>
 
             <GridView
                 android:id="@+id/panel_number"
@@ -95,7 +95,7 @@
                 android:verticalSpacing="8dp"
                 tiger:gridEntities="@{SearchActionModel.NUMBER_KEYS}"
                 tiger:itemClickListener="@{model}"
-                tools:listitem="@layout/component_button_in_keyboard" />
+                tools:listitem="@layout/component_button_in_keyboard"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
                 android:padding="16dp"
                 android:text="@string/area_company_input"
                 android:textColor="@color/prompt_color"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
             <View
                 android:layout_width="match_parent"
@@ -112,8 +112,7 @@
                 android:layout_marginEnd="40dp"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="24dp"
-                android:background="@color/title_and_content_splitter" />
-
+                android:background="@color/title_and_content_splitter"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/panel_char"
@@ -123,7 +122,8 @@
                 android:layout_marginStart="32dp"
                 tiger:itemClickListener="@{model}"
                 tiger:recyclerKeys="@{SearchActionModel.ALPHABET_KEYS}"
-                tools:listitem="@layout/component_button_in_keyboard" />
+                tools:listitem="@layout/component_button_in_keyboard"
+                />
 
 
         </LinearLayout>
@@ -133,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="20dp" />
+            app:layout_constraintGuide_begin="20dp"/>
 
         <com.tiger.curious.guide.view.EditViewWithoutIM
             android:id="@+id/search_view"
@@ -157,7 +157,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/btn_search"
             app:layout_constraintTop_toTopOf="parent"
-            tiger:input="@{model.inputContent}" />
+            tiger:input="@{model.inputContent}"/>
 
 
     </android.support.constraint.ConstraintLayout>
