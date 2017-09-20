@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.tiger.curious.guide.vmodel.DataSyncModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_data_update"
+            android:textSize="32sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:minEms="10"
+            android:text="@string/label_ip_address"
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/editText"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_marginRight="-19dp"
+            android:text="@{model.ipAddress}"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:minEms="15"
+            android:textSize="24sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:text="172.31.210.32"/>
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:minEms="10"
+            android:text="@string/label_port"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:minEms="15"
+            android:text="@{model.port}"
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintLeft_toRightOf="@+id/textView4"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText"
+            tools:text="3333"/>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/btn_sure"
+            android:onClick="@{()->model.onSure()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText2"
+            app:layout_constraintVertical_bias="0.304"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/btn_reset"
+            android:onClick="@{()->model.onReset()}"
+            app:layout_constraintRight_toLeftOf="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/editText2"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

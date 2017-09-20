@@ -8,6 +8,11 @@
     <string name="building_name">Hua Dian Building</string>
     <string name="query_hint">Click here to start querying</string>
     <string name="hint_no_result">No result, Please try again!</string>
+    <string name="label_ip_address">IP Address:</string>
+    <string name="title_data_update">Data Sync</string>
+    <string name="label_port">Port:</string>
+    <string name="btn_reset">Reset</string>
+    <string name="btn_sure">Sure</string>
 
 
 </resources>

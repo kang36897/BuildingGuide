@@ -1,11 +1,14 @@
 package com.tiger.curious.guide.base;
 
+import android.content.Context;
+
 import com.tiger.curious.guide.R;
 import com.tiger.curious.guide.database.DaoMaster;
 import com.tiger.curious.guide.database.DaoSession;
 import com.tiger.curious.guide.model.Company;
 import com.tiger.curious.guide.utils.ChineseUtils;
 import com.tiger.curious.guide.utils.JsonUtils;
+import com.tiger.curious.guide.utils.PreferenceUtils;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -24,55 +27,13 @@ import io.reactivex.schedulers.Schedulers;
 public class ChargeApplication extends BaseApplication {
 
 
-    private DaoSession session;
-
-
     @Override
     public void onCreate() {
         super.onCreate();
 
+        PreferenceUtils.init(getApplicationContext());
 
-        initData();
-
-    }
-
-    //TODO reuse the process of loading data
-    private void initData() {
-        Observable.fromCallable(new Callable<List<Company>>() {
-            @Override
-            public List<Company> call() throws Exception {
-                return JsonUtils.readFrom(getApplicationContext(), R.raw.arrangement);
-            }
-        })
-                .observeOn(Schedulers.io())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<List<Company>>() {
-                    @Override
-                    public void accept(@NonNull List<Company> companyList) throws Exception {
-
-                        //add indexes for companies
-                        for (Company item : companyList) {
-                            item.setAbbreviation(ChineseUtils.getSpells(item.getGroup() + item.getName()));
-                        }
-
-
-                        initDatabase(companyList);
-                    }
-                });
-
-    }
-
-    private void initDatabase(@NonNull List<Company> companyList) {
-        Database db = new DaoMaster.DevOpenHelper(getApplicationContext(), "building").getWritableDb();
-
-        DaoMaster daoMaster = new DaoMaster(db);
-        DaoSession session = daoMaster.newSession();
-
-        session.getCompanyDao().deleteAll();
-
-        for (Company company : companyList) {
-            session.getCompanyDao().insert(company);
-        }
+        DataPump.initData(getApplicationContext());
     }
 
 
