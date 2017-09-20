@@ -88,6 +88,7 @@ public class ResultFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mModel.onDestroy();
     }
 
 
