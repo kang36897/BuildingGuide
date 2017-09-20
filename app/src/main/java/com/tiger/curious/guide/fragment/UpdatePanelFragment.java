@@ -45,8 +45,10 @@ public class UpdatePanelFragment extends DialogFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mModel = new DataSyncModel(getActivity());
+        mModel = new DataSyncModel(this);
         mBinding.setModel(mModel);
+
+
 
 
     }
