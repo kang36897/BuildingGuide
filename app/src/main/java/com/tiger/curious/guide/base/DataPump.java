@@ -6,6 +6,7 @@ import com.tiger.curious.guide.R;
 import com.tiger.curious.guide.database.DaoMaster;
 import com.tiger.curious.guide.database.DaoSession;
 import com.tiger.curious.guide.model.Company;
+import com.tiger.curious.guide.service.LighterService;
 import com.tiger.curious.guide.utils.ChineseUtils;
 import com.tiger.curious.guide.utils.JsonUtils;
 
@@ -18,6 +19,7 @@ import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 /**
  * Created by bkang016 on 9/20/17.
@@ -62,6 +64,14 @@ public class DataPump {
         for (Company company : companyList) {
             session.getCompanyDao().insert(company);
         }
+    }
+
+
+    public static List<Company> fetchData(String baseUrl) {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl).build();
+        LighterService service = retrofit.create(LighterService.class);
+        List<Company> data = service.fetchArrangement();
+        return data;
     }
 
 }

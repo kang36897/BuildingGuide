@@ -13,6 +13,7 @@
     <string name="label_port">Port:</string>
     <string name="btn_reset">Reset</string>
     <string name="btn_sure">Sure</string>
+    <string name="title_sync_data">Syncing...</string>
 
 
 </resources>
