@@ -19,7 +19,7 @@ import com.tiger.curious.guide.vmodel.DataSyncModel;
 
 public class UpdatePanelFragment extends DialogFragment {
 
-
+    public final static String TAG = "UpdatePanelFragment";
     private FragmentUpdatePanelBinding mBinding;
     private DataSyncModel mModel;
 
@@ -35,9 +35,9 @@ public class UpdatePanelFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.Theme_AppCompat_Light_Dialog_Alert);
         builder.setView(mBinding.getRoot());
-
+        builder.setCancelable(false);
 
         return builder.create();
     }
@@ -49,7 +49,9 @@ public class UpdatePanelFragment extends DialogFragment {
         mBinding.setModel(mModel);
 
 
+    }
 
-
+    public static UpdatePanelFragment newInstance() {
+        return new UpdatePanelFragment();
     }
 }

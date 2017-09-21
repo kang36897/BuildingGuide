@@ -2,6 +2,7 @@ package com.tiger.curious.guide.activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.icu.lang.UProperty;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -18,6 +19,7 @@ import com.tiger.curious.guide.contract.ControlView;
 import com.tiger.curious.guide.databinding.ActivityMainBinding;
 import com.tiger.curious.guide.fragment.ResultFragment;
 import com.tiger.curious.guide.fragment.SearchFragment;
+import com.tiger.curious.guide.fragment.UpdatePanelFragment;
 import com.tiger.curious.guide.model.Company;
 import com.tiger.curious.guide.vmodel.TimeAreaModel;
 
@@ -167,6 +169,15 @@ public class MainActivity extends BaseActivity implements ControlView {
                     mSuperHandler.postDelayed(mEnterImmersiveMode, FULLSCREEN_CHECK);
                 }
 
+            }
+        });
+
+        mBinding.syncBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                UpdatePanelFragment.newInstance().show(getSupportFragmentManager(), UpdatePanelFragment.TAG);
+
+                return true;
             }
         });
 

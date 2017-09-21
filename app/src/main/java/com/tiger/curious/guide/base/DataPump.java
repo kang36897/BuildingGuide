@@ -6,7 +6,6 @@ import com.tiger.curious.guide.R;
 import com.tiger.curious.guide.database.DaoMaster;
 import com.tiger.curious.guide.database.DaoSession;
 import com.tiger.curious.guide.model.Company;
-import com.tiger.curious.guide.service.LighterService;
 import com.tiger.curious.guide.utils.ChineseUtils;
 import com.tiger.curious.guide.utils.JsonUtils;
 
@@ -19,7 +18,6 @@ import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
 
 /**
  * Created by bkang016 on 9/20/17.
@@ -40,17 +38,18 @@ public class DataPump {
                 .subscribe(new Consumer<List<Company>>() {
                     @Override
                     public void accept(@NonNull List<Company> companyList) throws Exception {
-
-                        //add indexes for companies
-                        for (Company item : companyList) {
-                            item.setAbbreviation(ChineseUtils.getSpells(item.getGroup() + item.getName()));
-                        }
-
-
+                        buildIndexes(companyList);
                         putData(context, companyList);
                     }
                 });
 
+    }
+
+    public static void buildIndexes(@NonNull List<Company> companyList) {
+        //add indexes for companies
+        for (Company item : companyList) {
+            item.setAbbreviation(ChineseUtils.getSpells(item.getGroup() + item.getName()));
+        }
     }
 
     public static void putData(Context context, @NonNull List<Company> companyList) {
@@ -66,12 +65,5 @@ public class DataPump {
         }
     }
 
-
-    public static List<Company> fetchData(String baseUrl) {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl).build();
-        LighterService service = retrofit.create(LighterService.class);
-        List<Company> data = service.fetchArrangement();
-        return data;
-    }
 
 }

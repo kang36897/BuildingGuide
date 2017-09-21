@@ -13,4 +13,6 @@
     <string name="btn_reset">重置</string>
     <string name="btn_sure">确定</string>
     <string name="title_sync_data">更新中...</string>
+    <string name="hint_sync_data_success">数据更新成功</string>
+    <string name="hint_sync_data_failed">数据更新失败</string>
 </resources>

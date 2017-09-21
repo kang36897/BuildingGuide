@@ -101,6 +101,12 @@
             android:id="@+id/hidden_btn"
             android:layout_width="48dp"
             android:layout_height="48dp"/>
+
+        <TextView
+            android:id="@+id/sync_btn"
+            android:layout_gravity="bottom|left"
+            android:layout_width="48dp"
+            android:layout_height="48dp"/>
     </FrameLayout>
 
 </layout>

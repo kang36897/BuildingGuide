@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.tiger.curious.guide.database.CompanyDao;
 import com.tiger.curious.guide.database.DaoSession;
 
@@ -25,16 +26,19 @@ public class Company implements Parcelable {
     @Id(autoincrement = true)
     private Long id;
 
+    @SerializedName("company_name")
     private String name;
 
     private String englishName;
 
+    @SerializedName("room")
     private String roomNumber;
 
     private int floor;
 
     private String abbreviation;
 
+    @SerializedName("group_name")
     private String group;
 
     /**

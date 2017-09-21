@@ -14,6 +14,8 @@
     <string name="btn_reset">Reset</string>
     <string name="btn_sure">Sure</string>
     <string name="title_sync_data">Syncing...</string>
+    <string name="hint_sync_data_success">Data syncing success</string>
+    <string name="hint_sync_data_failed">Data syncing failed</string>
 
 
 </resources>
