@@ -1,6 +1,7 @@
 package com.tiger.curious.guide.base;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.tiger.curious.guide.R;
 import com.tiger.curious.guide.database.DaoMaster;
@@ -48,6 +49,7 @@ public class DataPump {
     public static void buildIndexes(@NonNull List<Company> companyList) {
         //add indexes for companies
         for (Company item : companyList) {
+            Log.d("Company", item.toString());
             item.setAbbreviation(ChineseUtils.getSpells(item.getGroup() + item.getName()));
         }
     }

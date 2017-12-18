@@ -26,4 +26,12 @@ public class ItemResultModel extends BaseObservable {
         this.company = company;
         notifyChange();
     }
+
+    public String computeFormalRoomNumber(){
+        if(company.getRoomNumber().equalsIgnoreCase("whole")){
+            return company.getFloor()+"L";
+        }else{
+            return company.getRoomNumber();
+        }
+    }
 }

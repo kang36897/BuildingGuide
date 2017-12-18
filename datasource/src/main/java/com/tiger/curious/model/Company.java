@@ -5,24 +5,25 @@ package com.tiger.curious.model;
  */
 
 public class Company {
-    private String name;
+    private String company_name;
 
     private String englishName;
 
-    private String roomNumber;
+    private String room;
 
     private int floor;
 
     private String abbreviation;
 
-    private String group;
+    private String group_name;
 
-    public String getName() {
-        return name;
+
+    public String getCompany_name() {
+        return company_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
     }
 
     public String getEnglishName() {
@@ -33,12 +34,12 @@ public class Company {
         this.englishName = englishName;
     }
 
-    public String getRoomNumber() {
-        return roomNumber;
+    public String getRoom() {
+        return room;
     }
 
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setRoom(String room) {
+        this.room = room;
     }
 
     public int getFloor() {
@@ -57,23 +58,23 @@ public class Company {
         this.abbreviation = abbreviation;
     }
 
-    public String getGroup() {
-        return group;
+    public String getGroup_name() {
+        return group_name;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setGroup_name(String group_name) {
+        this.group_name = group_name;
     }
 
     @Override
     public String toString() {
         return "Company{" +
-                "name='" + name + '\'' +
+                "company_name='" + company_name + '\'' +
                 ", englishName='" + englishName + '\'' +
-                ", roomNumber='" + roomNumber + '\'' +
+                ", room='" + room + '\'' +
                 ", floor=" + floor +
                 ", abbreviation='" + abbreviation + '\'' +
-                ", group='" + group + '\'' +
+                ", group_name='" + group_name + '\'' +
                 '}';
     }
 }

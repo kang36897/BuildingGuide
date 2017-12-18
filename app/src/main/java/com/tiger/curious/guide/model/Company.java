@@ -34,6 +34,7 @@ public class Company implements Parcelable {
     @SerializedName("room")
     private String roomNumber;
 
+
     private int floor;
 
     private String abbreviation;

@@ -129,15 +129,19 @@ public class ExcelUtils {
                         break;
 
                     case 1:
-                        company.setRoomNumber(extract(cell, String.class));
+                        company.setRoom(extract(cell, String.class));
                         break;
 
                     case 2:
-                        company.setName(extract(cell, String.class));
+                        company.setCompany_name(extract(cell, String.class));
                         break;
 
                     case 3:
-                        company.setGroup(extract(cell, String.class));
+                        company.setGroup_name(extract(cell, String.class));
+                        break;
+
+                    case 4:
+                        company.setEnglishName(extract(cell, String.class));
                         break;
                 }
 
@@ -161,7 +165,7 @@ public class ExcelUtils {
                 return expected.cast(String.valueOf((int) cell.getNumericCellValue()));
             }
         } else {
-            return expected.cast(cell.getStringCellValue());
+            return expected.cast(cell.getStringCellValue().trim());
         }
 
         return null;
