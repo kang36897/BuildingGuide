@@ -29,6 +29,7 @@ public class Company implements Parcelable {
     @SerializedName("company_name")
     private String name;
 
+    @SerializedName("english_name")
     private String englishName;
 
     @SerializedName("room")

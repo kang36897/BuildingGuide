@@ -46,7 +46,7 @@ public class ChineseUtils {
     private static Character getFirstLetter(char ch) {
         byte[] uniCode = null;
         try {
-            uniCode = String.valueOf(ch).getBytes("GBK");
+            uniCode = String.valueOf(ch).getBytes("GB2312");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             return null;

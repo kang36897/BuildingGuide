@@ -17,4 +17,5 @@ public interface GuilderService {
     @GET("/getArrangement")
     Call<ArrangementFeedback> fetchArrangement();
 
+
 }

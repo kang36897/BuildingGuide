@@ -50,7 +50,21 @@ public class DataPump {
         //add indexes for companies
         for (Company item : companyList) {
             Log.d("Company", item.toString());
-            item.setAbbreviation(ChineseUtils.getSpells(item.getGroup() + item.getName()));
+
+            String characters = item.getGroup() + item.getName();
+            String abbreviation = "";
+            if (characters.equals("上海信麟资产管理有限公司")) {
+                abbreviation = "shxlzcglyxgs";
+            } else if (characters.equals("华鑫国际信托有限公司")) {
+                abbreviation = "hxgjxtyxgs";
+            } else if (characters.equals("上海炫踪网络股份有限公司")) {
+                abbreviation = "shxzwlgfyxgs";
+            } else {
+                abbreviation = ChineseUtils.getSpells(characters);
+            }
+
+            item.setAbbreviation(abbreviation);
+
         }
     }
 

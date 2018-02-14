@@ -16,6 +16,7 @@
     <string name="title_sync_data">Syncing...</string>
     <string name="hint_sync_data_success">Data syncing success</string>
     <string name="hint_sync_data_failed">Data syncing failed</string>
+    <string name="service_hint">访客请至前台登记，凭证件换取临时出入证。\nVisitors are kindly requested to register at the front desk and exchange vouchers  for temporary passes.</string>
 
 
 </resources>

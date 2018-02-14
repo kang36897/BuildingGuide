@@ -162,7 +162,8 @@ public class ExcelUtils {
                 return expected.cast((int) cell.getNumericCellValue());
 
             if (expected == String.class) {
-                return expected.cast(String.valueOf((int) cell.getNumericCellValue()));
+                String temp = String.valueOf(cell.getNumericCellValue());
+                return expected.cast(temp.endsWith(".0") ? String.valueOf((int) cell.getNumericCellValue()) : temp);
             }
         } else {
             return expected.cast(cell.getStringCellValue().trim());

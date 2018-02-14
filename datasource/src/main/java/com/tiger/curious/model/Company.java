@@ -1,5 +1,7 @@
 package com.tiger.curious.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by bkang016 on 5/29/17.
  */
@@ -7,6 +9,7 @@ package com.tiger.curious.model;
 public class Company {
     private String company_name;
 
+    @SerializedName("english_name")
     private String englishName;
 
     private String room;
