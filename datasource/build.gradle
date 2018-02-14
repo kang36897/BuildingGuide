@@ -1,0 +1,36 @@
+apply plugin: 'java'
+
+sourceSets {
+    main {
+        output.resourcesDir = output.classesDir
+    }
+
+    test {
+        output.resourcesDir = output.classesDir
+    }
+
+
+}
+
+dependencies {
+    compile fileTree('libs')
+    compile 'com.google.code.gson:gson:2.8.0'
+    testCompile 'junit:junit:4.12'
+}
+
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+task GenerateData(type: JavaExec) {
+    group "Objective"
+    description "Run the main class to generate json files"
+
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.tiger.curious.generate.DataGenerator'
+    args = [project(':app').ext.jsonDir.absolutePath]
+}
+
+
+GenerateData {}.dependsOn("build")
+GenerateData {}.mustRunAfter(":app:deleteJsonRaw")

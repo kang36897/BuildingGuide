@@ -7,7 +7,10 @@ import android.support.v7.widget.RecyclerView;
 
 import com.tiger.curious.guide.R;
 import com.tiger.curious.guide.model.Company;
+import com.tiger.curious.guide.model.Key;
 import com.tiger.curious.guide.plugin.adapter.RecyclerCompanyAdapter;
+import com.tiger.curious.guide.plugin.adapter.RecyclerKeyAdapter;
+import com.tiger.curious.guide.view.AlphabetKeyboardLayoutManager;
 
 import java.util.List;
 
@@ -35,5 +38,21 @@ public class RecyclerViewBinding {
         }
 
         ((RecyclerCompanyAdapter) targetView.getAdapter()).updateDataSource(data);
+    }
+
+    @BindingAdapter("recyclerKeys")
+    public static void populateKeyboard(RecyclerView targetView, List<Key> data){
+
+        if(targetView.getAdapter() == null){
+            RecyclerKeyAdapter adapter = new RecyclerKeyAdapter(data);
+            targetView.setLayoutManager(new AlphabetKeyboardLayoutManager());
+
+
+            targetView.setAdapter(adapter);
+            return;
+        }
+
+        ((RecyclerKeyAdapter)targetView.getAdapter()).updateDataSource(data);
+
     }
 }

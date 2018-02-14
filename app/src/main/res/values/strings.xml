@@ -6,6 +6,17 @@
     <string name="search_action">Search</string>
     <string name="title_search_result">Search Result</string>
     <string name="building_name">Hua Dian Building</string>
+    <string name="query_hint">Click here to start querying</string>
+    <string name="hint_no_result">No result, Please try again!</string>
+    <string name="label_ip_address">IP Address:</string>
+    <string name="title_data_update">Data Sync</string>
+    <string name="label_port">Port:</string>
+    <string name="btn_reset">Reset</string>
+    <string name="btn_sure">Sure</string>
+    <string name="title_sync_data">Syncing...</string>
+    <string name="hint_sync_data_success">Data syncing success</string>
+    <string name="hint_sync_data_failed">Data syncing failed</string>
+    <string name="service_hint">访客请至前台登记，凭证件换取临时出入证。\nVisitors are kindly requested to register at the front desk and exchange vouchers  for temporary passes.</string>
 
 
 </resources>

@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_key"
+        android:layout_margin="4dp"
         android:gravity="center"
         android:onClick="@{v->model.onClick(v)}"
         android:padding="8dp"

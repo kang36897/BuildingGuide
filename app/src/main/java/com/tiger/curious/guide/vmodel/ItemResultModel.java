@@ -1,6 +1,7 @@
 package com.tiger.curious.guide.vmodel;
 
 import android.databinding.BaseObservable;
+import android.text.Html;
 
 import com.tiger.curious.guide.model.Company;
 
@@ -16,7 +17,8 @@ public class ItemResultModel extends BaseObservable {
         company = data;
     }
 
-    public ItemResultModel(){}
+    public ItemResultModel() {
+    }
 
     public Company getCompany() {
         return company;
@@ -25,5 +27,17 @@ public class ItemResultModel extends BaseObservable {
     public void setCompany(Company company) {
         this.company = company;
         notifyChange();
+    }
+
+    public String computeFormalRoomNumber() {
+        if (company.getRoomNumber().equalsIgnoreCase("whole")) {
+            return company.getFloor() + "L";
+        } else {
+            if (company.getRoomNumber().contains(".")) {
+                return company.getRoomNumber().replaceAll("\\.", ".\n");
+
+            } else
+                return company.getRoomNumber();
+        }
     }
 }

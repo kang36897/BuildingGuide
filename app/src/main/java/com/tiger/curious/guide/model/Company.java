@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.tiger.curious.guide.database.CompanyDao;
 import com.tiger.curious.guide.database.DaoSession;
 
@@ -25,15 +26,22 @@ public class Company implements Parcelable {
     @Id(autoincrement = true)
     private Long id;
 
+    @SerializedName("company_name")
     private String name;
 
+    @SerializedName("english_name")
     private String englishName;
 
+    @SerializedName("room")
     private String roomNumber;
+
 
     private int floor;
 
     private String abbreviation;
+
+    @SerializedName("group_name")
+    private String group;
 
     /**
      * Used to resolve relations
@@ -47,15 +55,16 @@ public class Company implements Parcelable {
     @Generated(hash = 458770942)
     private transient CompanyDao myDao;
 
-    @Generated(hash = 1971629023)
+    @Generated(hash = 623507712)
     public Company(Long id, String name, String englishName, String roomNumber, int floor,
-            String abbreviation) {
+                   String abbreviation, String group) {
         this.id = id;
         this.name = name;
         this.englishName = englishName;
         this.roomNumber = roomNumber;
         this.floor = floor;
         this.abbreviation = abbreviation;
+        this.group = group;
     }
 
     @Generated(hash = 1096856789)
@@ -98,7 +107,6 @@ public class Company implements Parcelable {
         }
     };
 
-   
 
     public String getName() {
         return this.name;
@@ -193,4 +201,25 @@ public class Company implements Parcelable {
         return this.id;
     }
 
+    public String getGroup() {
+        return this.group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", englishName='" + englishName + '\'' +
+                ", roomNumber='" + roomNumber + '\'' +
+                ", floor=" + floor +
+                ", abbreviation='" + abbreviation + '\'' +
+                ", group='" + group + '\'' +
+                '}';
+    }
 }

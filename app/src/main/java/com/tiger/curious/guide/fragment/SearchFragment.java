@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,7 +28,8 @@ public class SearchFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false);
         return mBinding.getRoot();
     }
@@ -39,5 +41,24 @@ public class SearchFragment extends Fragment {
         mModel = new SearchActionModel((ControlView) getActivity());
         mBinding.setModel(mModel);
 
+
+        mBinding.searchView.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                mBinding.searchView.setCursorVisible(true);
+                mModel.setVisibilityOfKeyboard(View.VISIBLE);
+                return false;
+            }
+        });
+    }
+
+
+    public void hideKeyboard() {
+        if (mModel == null) {
+            return;
+        }
+
+        mModel.setVisibilityOfKeyboard(View.GONE);
     }
 }

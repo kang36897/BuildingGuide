@@ -23,15 +23,18 @@ public class ChineseUtils {
     };
 
     public static String getSpells(String characters) {
+        String temp = characters.trim();
+
         StringBuilder buffer = new StringBuilder();
 
-        for (int i = 0; i < characters.length(); i++) {
+        for (int i = 0; i < temp.length(); i++) {
 
-            char ch = characters.charAt(i);
-            if ((ch >> 7) == 0) {
+            char ch = temp.charAt(i);
+            if (((ch >> 7) == 0) || ch == 160) {
 
             } else {
                 char spell = getFirstLetter(ch);
+
                 buffer.append(spell);
             }
 
@@ -43,7 +46,7 @@ public class ChineseUtils {
     private static Character getFirstLetter(char ch) {
         byte[] uniCode = null;
         try {
-            uniCode = String.valueOf(ch).getBytes("GBK");
+            uniCode = String.valueOf(ch).getBytes("GB2312");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             return null;

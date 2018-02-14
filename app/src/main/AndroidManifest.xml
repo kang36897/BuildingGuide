@@ -2,6 +2,7 @@
 
           package="com.tiger.curious.guide">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".base.ChargeApplication"
         android:allowBackup="true"
@@ -13,7 +14,8 @@
 
         <activity
             android:name=".activity.MainActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"/>
                 <category android:name="android.intent.category.DEFAULT"/>
