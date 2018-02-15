@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.icu.lang.UProperty;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -59,7 +60,6 @@ public class MainActivity extends BaseActivity implements ControlView {
         @Override
         public void run() {
             hideResultFragment();
-
             hideSearchKeyboard();
 
 
@@ -106,12 +106,16 @@ public class MainActivity extends BaseActivity implements ControlView {
                                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
             }
 
-            mOriginal = Long.MIN_VALUE;
-            mCount = 0;
+            restoreHiddenToken();
 
             mSuperHandler.postDelayed(mEnterImmersiveMode, FULLSCREEN_CHECK);
         }
     };
+
+    public void restoreHiddenToken() {
+        mOriginal = Long.MIN_VALUE;
+        mCount = 0;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -136,15 +140,11 @@ public class MainActivity extends BaseActivity implements ControlView {
         mBinding.hiddenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mCount > 2) {
-                    return;
-                }
 
                 if (mOriginal != Long.MIN_VALUE) {
 
                     if (mOriginal + VALID_INTERVAL < System.currentTimeMillis()) {
-                        mOriginal = Long.MIN_VALUE;
-                        mCount = 0;
+                        restoreHiddenToken();
                         return;
                     }
 
@@ -153,6 +153,8 @@ public class MainActivity extends BaseActivity implements ControlView {
                 mCount++;
 
                 Toast.makeText(MainActivity.this, "click -> " + mCount, Toast.LENGTH_SHORT).show();
+
+                mOriginal = System.currentTimeMillis();
                 if (mCount == 3) {
                     //exit the full screen  mode
 
