@@ -8,6 +8,7 @@ import com.tiger.curious.guide.database.DaoMaster;
 import com.tiger.curious.guide.database.DaoSession;
 import com.tiger.curious.guide.model.Company;
 import com.tiger.curious.guide.utils.ChineseUtils;
+import com.tiger.curious.guide.utils.EChineseUtils;
 import com.tiger.curious.guide.utils.JsonUtils;
 
 import org.greenrobot.greendao.database.Database;
@@ -53,15 +54,16 @@ public class DataPump {
 
             String characters = item.getGroup() + item.getName();
             String abbreviation = "";
-            if (characters.equals("上海信麟资产管理有限公司")) {
-                abbreviation = "shxlzcglyxgs";
-            } else if (characters.equals("华鑫国际信托有限公司")) {
-                abbreviation = "hxgjxtyxgs";
-            } else if (characters.equals("上海炫踪网络股份有限公司")) {
-                abbreviation = "shxzwlgfyxgs";
-            } else {
-                abbreviation = ChineseUtils.getSpells(characters);
-            }
+            abbreviation = EChineseUtils.getSpellCapitalChar(characters);
+//            if (characters.equals("上海信麟资产管理有限公司")) {
+//                abbreviation = "shxlzcglyxgs";
+//            } else if (characters.equals("华鑫国际信托有限公司")) {
+//                abbreviation = "hxgjxtyxgs";
+//            } else if (characters.equals("上海炫踪网络股份有限公司")) {
+//                abbreviation = "shxzwlgfyxgs";
+//            } else {
+//                abbreviation = ChineseUtils.getSpells(characters);
+//            }
 
             item.setAbbreviation(abbreviation);
 

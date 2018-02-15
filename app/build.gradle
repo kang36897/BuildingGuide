@@ -46,6 +46,7 @@ greendao {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.belerweb:pinyin4j:2.5.0'
     compile 'com.android.support:appcompat-v7:27.0.2'
     compile 'com.github.bumptech.glide:glide:3.8.0'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
